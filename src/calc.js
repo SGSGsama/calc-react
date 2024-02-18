@@ -58,8 +58,7 @@ function qpow(a, b) {
 export function calc(m) {
     let s = trans(m);
     if (s == null) {
-        alert("illegal format");
-        return null;
+        return "illegal format!";
     }
     let tmp = 0;
     let stack_num = Stack();
@@ -71,7 +70,7 @@ export function calc(m) {
         }
         else if (s[i] in opt) {
             if (s[i] != "#") stack_opt.push(s[i]);
-            else stack_num.push(tmp), console.log(tmp), tmp = 0;
+            else stack_num.push(tmp), tmp = 0;
         }
         while (stack_num.size() >= 2 && stack_opt.size() >= 1) {
             let rval = stack_num.top();
@@ -88,8 +87,7 @@ export function calc(m) {
         }
     }
     if (!stack_opt.empty() || stack_num.size() != 1) {
-        alert("illegal format");
-        return null;
+        return "illegal format!";
     }
     else return stack_num.top();
 }

@@ -1,18 +1,19 @@
-import React from "react";
-import { Keyboard, Inputarea } from "./ui.js";
+import React, { useState } from "react";
+import { Keyboard, Inputarea, Outputarea } from "./ui.js";
 import { createRoot } from "react-dom/client";
 import { calc } from "./calc.js";
 function Main() {
+    const [outputValue, setOutputValue] = useState("");
+    const [inputValue, setInputValue] = useState("");
+    function print() {
+        setOutputValue(calc(inputValue));
+    }
     return (<div>
-        <Inputarea />
-        <Keyboard />
+        <Inputarea updateValue={setInputValue} value={inputValue} />
+        <Keyboard submit_click={print} />
+        <Outputarea value={outputValue} />
     </div>);
 }
-function Output() {
-    return <div>
-
-    </div>
-} root.render(<Main />);
-const submit = document.getElementById("submit");
 const root = createRoot(document.getElementById("main"));
+root.render(<Main />);
 
