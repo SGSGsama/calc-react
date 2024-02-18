@@ -8,9 +8,13 @@ function Main() {
     function print() {
         setOutputValue(calc(inputValue));
     }
+    function keyboard_click(event) {
+        let tmp = inputValue + event.target.innerHTML;
+        setInputValue(tmp);
+    }
     return (<div>
         <Inputarea updateValue={setInputValue} value={inputValue} />
-        <Keyboard submit_click={print} />
+        <Keyboard submit_click={print} keyboard_click={keyboard_click} />
         <Outputarea value={outputValue} />
     </div>);
 }
